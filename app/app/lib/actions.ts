@@ -29,8 +29,8 @@ export async function createInvoice(formData: FormData) {
 
   await sql` INSERT INTO invoices (customer_id, amount, status, date) VALUES (${customerId}, ${amountInCents}, ${status}, ${date}) `;
 
-  revalidatePath("/dashboard/invoices");
-  redirect("/dashboard/invoices");
+  revalidatePath("/invoices");
+  redirect("/invoices");
 }
 
 export async function updateInvoice(id: string, formData: FormData) {
@@ -44,11 +44,11 @@ export async function updateInvoice(id: string, formData: FormData) {
 
   await sql` UPDATE invoices SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status} WHERE id = ${id} `;
 
-  revalidatePath("/dashboard/invoices");
-  redirect("/dashboard/invoices");
+  revalidatePath("/invoices");
+  redirect("/invoices");
 }
 
 export async function deleteInvoice(id: string) {
   await sql`DELETE from invoices WHERE id = ${id}`;
-  revalidatePath("/dashboard/invoices");
+  revalidatePath("/invoices");
 }
