@@ -2,13 +2,6 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <M-Bslash> <Plug>(copilot-suggest)
-imap <M-[> <Plug>(copilot-previous)
-imap <M-]> <Plug>(copilot-next)
-imap <Plug>(copilot-suggest) <Cmd>call copilot#Suggest()
-imap <Plug>(copilot-previous) <Cmd>call copilot#Previous()
-imap <Plug>(copilot-next) <Cmd>call copilot#Next()
-imap <Plug>(copilot-dismiss) <Cmd>call copilot#Dismiss()
 inoremap <silent> <expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
 inoremap <silent> <expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
 inoremap <silent> <expr> <C-Y> coc#pum#visible() ? coc#pum#confirm() : "\"
@@ -18,9 +11,6 @@ inoremap <silent> <expr> <Down> coc#pum#visible() ? coc#pum#next(0) : "\<Down>"
 inoremap <silent> <expr> <C-P> coc#pum#visible() ? coc#pum#prev(1) : "\"
 inoremap <silent> <expr> <C-N> coc#pum#visible() ? coc#pum#next(1) : "\"
 inoremap <silent> <expr> <Plug>(asyncomplete_force_refresh) asyncomplete#force_refresh()
-imap Ü <Plug>(copilot-suggest)
-imap Û <Plug>(copilot-previous)
-imap Ý <Plug>(copilot-next)
 xmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
@@ -79,8 +69,6 @@ unlet s:cpo_save
 set autoindent
 set background=dark
 set backspace=indent,eol,start
-set backupdir=~/.cache/vim/backup//
-set directory=~/.cache/vim/swap//
 set noequalalways
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -88,10 +76,12 @@ set fillchars=vert:|,fold:-,eob:~,lastline:@,vert:│
 set helplang=en
 set ignorecase
 set laststatus=0
+set nomodeline
 set mouse=a
 set pastetoggle=<F2>
 set path=.,/usr/include,,,**
-set runtimepath=~/.vim,~/.vim/pack/github/start/copilot.vim,~/.vim/plugged/asyncomplete.vim,~/.vim/plugged/asyncomplete-lsp.vim,~/.vim/plugged/rust.vim,~/.vim/plugged/vim-racer,~/.vim/plugged/vim-javascript,~/.vim/plugged/typescript-vim,~/.vim/plugged/vim-jsx-typescript,~/.vim/plugged/vim-styled-components,~/.vim/plugged/vim-graphql,~/.vim/plugged/coc.nvim,/usr/share/vim/vimfiles,/usr/share/vim/vim90,/usr/share/vim/vimfiles/after,~/.vim/plugged/rust.vim/after,~/.vim/plugged/vim-javascript/after,~/.vim/plugged/vim-jsx-typescript/after,~/.vim/plugged/vim-styled-components/after,~/.vim/plugged/vim-graphql/after,~/.vim/after
+set printoptions=paper:a4
+set runtimepath=~/.vim,~/.vim/plugged/asyncomplete.vim,~/.vim/plugged/asyncomplete-lsp.vim,~/.vim/plugged/rust.vim,~/.vim/plugged/vim-racer,~/.vim/plugged/vim-javascript,~/.vim/plugged/typescript-vim,~/.vim/plugged/vim-jsx-typescript,~/.vim/plugged/vim-styled-components,~/.vim/plugged/vim-graphql,~/.vim/plugged/coc.nvim,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim90,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/rust.vim/after,~/.vim/plugged/vim-javascript/after,~/.vim/plugged/vim-jsx-typescript/after,~/.vim/plugged/vim-styled-components/after,~/.vim/plugged/vim-graphql/after,~/.vim/after
 set shiftwidth=4
 set shortmess=filnxtToOSF
 set showmatch
@@ -99,11 +89,10 @@ set noshowmode
 set softtabstop=4
 set splitbelow
 set splitright
-set suffixes=.bak,~,.o,.info,.swp,.aux,.bbl,.blg,.brf,.cb,.dvi,.idx,.ilg,.ind,.inx,.jpg,.log,.out,.png,.toc
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set noswapfile
 set tabstop=4
 set ttimeoutlen=0
-set undodir=~/.cache/vim/undo//
 set wildmenu
 set winheight=30
 set winminheight=0
@@ -122,6 +111,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
+badd +0 \!/bin/bash
 argglobal
 %argdel
 let s:save_splitbelow = &splitbelow
@@ -130,6 +120,10 @@ set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -140,11 +134,15 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 137 + 69) / 138)
-exe 'vert 2resize ' . ((&columns * 0 + 69) / 138)
+exe 'vert 1resize ' . ((&columns * 100 + 62) / 125)
+exe '2resize ' . ((&lines * 30 + 18) / 36)
+exe 'vert 2resize ' . ((&columns * 24 + 62) / 125)
+exe '3resize ' . ((&lines * 4 + 18) / 36)
+exe 'vert 3resize ' . ((&columns * 24 + 62) / 125)
 argglobal
-terminal ++curwin ++cols=137 ++rows=41 
+terminal ++curwin ++cols=100 ++rows=35 
 let s:term_buf_2 = bufnr()
+balt \!/bin/bash\ (1)
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -213,14 +211,13 @@ setlocal keywordprg=
 set linebreak
 setlocal linebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
 setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
-setlocal modeline
+setlocal nomodeline
 setlocal nomodifiable
 setlocal nrformats=bin,octal,hex
 set number
@@ -278,7 +275,7 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 20) / 41)
+let s:l = 1 - ((0 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -286,9 +283,9 @@ keepjumps 1
 normal! 0
 wincmd w
 argglobal
-terminal ++curwin ++cols=100 ++rows=41 
-let s:term_buf_3 = bufnr()
-balt \!/usr/bin/zsh
+terminal ++curwin ++cols=100 ++rows=30 
+let s:term_buf_1 = bufnr()
+balt \!/bin/bash
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -357,14 +354,13 @@ setlocal keywordprg=
 set linebreak
 setlocal linebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
 setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
-setlocal modeline
+setlocal nomodeline
 setlocal nomodifiable
 setlocal nrformats=bin,octal,hex
 set number
@@ -422,15 +418,161 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 20) / 41)
+let s:l = 1 - ((0 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 137 + 69) / 138)
-exe 'vert 2resize ' . ((&columns * 0 + 69) / 138)
+argglobal
+terminal ++curwin ++cols=100 ++rows=30 
+let s:term_buf_4 = bufnr()
+balt \!/bin/bash\ (1)
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=terminal
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinscopedecls=public,protected,private
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != ''
+setlocal filetype=
+endif
+setlocal fillchars=
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+set linebreak
+setlocal linebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal listchars=
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal nomodeline
+setlocal nomodifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal nosmoothscroll
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal spelloptions=
+setlocal statusline=
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != ''
+setlocal syntax=
+endif
+setlocal tabstop=4
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+set termwinsize=30*100
+setlocal termwinsize=30*100
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal thesaurusfunc=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal virtualedit=
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 1 - ((0 * winheight(0) + 2) / 4)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 100 + 62) / 125)
+exe '2resize ' . ((&lines * 30 + 18) / 36)
+exe 'vert 2resize ' . ((&columns * 24 + 62) / 125)
+exe '3resize ' . ((&lines * 4 + 18) / 36)
+exe 'vert 3resize ' . ((&columns * 24 + 62) / 125)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
