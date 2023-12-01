@@ -1,42 +1,5 @@
 {
-  "node": {
-    "708ad86d7ebc9fc7e269c8607db5893593bda300": {
-      "workers": {
-        "app/invoices/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22createInvoice%22%2C%22deleteInvoice%22%2C%22updateInvoice%22%5D%5D%5D&__client_imported__=!",
-        "app/invoices/create/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22updateInvoice%22%2C%22createInvoice%22%2C%22deleteInvoice%22%5D%5D%5D&__client_imported__=true!",
-        "app/invoices/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22updateInvoice%22%2C%22createInvoice%22%2C%22deleteInvoice%22%5D%5D%5D&__client_imported__=true!"
-      },
-      "layer": {
-        "app/invoices/page": "rsc",
-        "app/invoices/create/page": "action-browser",
-        "app/invoices/[id]/edit/page": "action-browser"
-      }
-    },
-    "63a075c68af0063934f4de0b999d29a3b8e0e7e8": {
-      "workers": {
-        "app/invoices/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22createInvoice%22%2C%22deleteInvoice%22%2C%22updateInvoice%22%5D%5D%5D&__client_imported__=!",
-        "app/invoices/create/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22updateInvoice%22%2C%22createInvoice%22%2C%22deleteInvoice%22%5D%5D%5D&__client_imported__=true!",
-        "app/invoices/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22updateInvoice%22%2C%22createInvoice%22%2C%22deleteInvoice%22%5D%5D%5D&__client_imported__=true!"
-      },
-      "layer": {
-        "app/invoices/page": "rsc",
-        "app/invoices/create/page": "action-browser",
-        "app/invoices/[id]/edit/page": "action-browser"
-      }
-    },
-    "41e89e6a5dcc7d59c5d1a930b9ccb237cdcbd448": {
-      "workers": {
-        "app/invoices/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22createInvoice%22%2C%22deleteInvoice%22%2C%22updateInvoice%22%5D%5D%5D&__client_imported__=!",
-        "app/invoices/create/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22updateInvoice%22%2C%22createInvoice%22%2C%22deleteInvoice%22%5D%5D%5D&__client_imported__=true!",
-        "app/invoices/[id]/edit/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fsanjeet%2F2023%2Ftrue_news%2Fapp%2Fapp%2Flib%2Factions.ts%22%2C%5B%22updateInvoice%22%2C%22createInvoice%22%2C%22deleteInvoice%22%5D%5D%5D&__client_imported__=true!"
-      },
-      "layer": {
-        "app/invoices/page": "rsc",
-        "app/invoices/create/page": "action-browser",
-        "app/invoices/[id]/edit/page": "action-browser"
-      }
-    }
-  },
+  "node": {},
   "edge": {},
-  "encryptionKey": "EX45/fCeDm3SVweyypaLeJRZmlTt5zO5xnUZ+7fQe6Q="
+  "encryptionKey": "VgbWX49zv93lN1glmZFDBbwQN0yXzYLl5R61wd3p6j0="
 }
