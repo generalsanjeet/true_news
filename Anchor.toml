@@ -5,13 +5,13 @@ seeds = false
 skip-lint = false
 
 [programs.localnet]
-true_news = "HgyLF6epW5xUbhTAFkuwooQk3WBKZaCCnW1yKTBBt1dR"
+true_news = "nyzossX1y8qY1BusJur1ckHfLzrtRxwpgvwpBuvJBMc"
 
 [registry]
-url = "https://api.apr.dev"
+url = "http://localhost:8899"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "/home/sanjeet/.config/solana/id.json"
 
 [scripts]
