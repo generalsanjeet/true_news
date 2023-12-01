@@ -6,3 +6,6 @@ target
 node_modules
 test-ledger
 .yarn
+./app/node_modules
+./workspace.vim
+./node_modules
