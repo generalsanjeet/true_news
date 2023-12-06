@@ -30,7 +30,7 @@ export async function createInvoice(formData: FormData) {
   await sql` INSERT INTO invoices (customer_id, amount, status, date) VALUES (${customerId}, ${amountInCents}, ${status}, ${date}) `;
 
   revalidatePath("/invoices");
-  redirect("/invoices");
+  redirect("/mynews");
 }
 
 export async function updateInvoice(id: string, formData: FormData) {
@@ -45,7 +45,7 @@ export async function updateInvoice(id: string, formData: FormData) {
   await sql` UPDATE invoices SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status} WHERE id = ${id} `;
 
   revalidatePath("/invoices");
-  redirect("/invoices");
+  redirect("/mynews");
 }
 
 export async function deleteInvoice(id: string) {
