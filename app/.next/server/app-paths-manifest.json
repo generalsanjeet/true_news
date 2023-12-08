@@ -1,1 +1,5 @@
-{}
+{
+  "/mynews/page": "app/mynews/page.js",
+  "/customers/page": "app/customers/page.js",
+  "/(overview)/page": "app/(overview)/page.js"
+}

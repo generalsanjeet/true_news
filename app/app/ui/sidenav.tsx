@@ -1,7 +1,11 @@
 import Link from "next/link";
 import NavLinks from "@/app/ui/nav-links";
 import AcmeLogo from "@/app/ui/acme-logo";
-import {  WalletIcon } from "@heroicons/react/24/outline";
+import { WalletIcon } from "@heroicons/react/24/outline";
+import {
+  WalletMultiButton,
+  WalletDisconnectButton,
+} from "@solana/wallet-adapter-react-ui";
 
 export default function SideNav() {
   return (
@@ -17,12 +21,8 @@ export default function SideNav() {
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
-        <form>
-          <button className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-500 p-3 text-sm font-medium bg-gray-700 text-white hover:bg-gray-500 hover:text-black md:flex-none md:justify-start md:p-2 md:px-3">
-            <WalletIcon className="w-6" />
-            <div className="hidden md:block">Connect Wallet</div>
-          </button>
-        </form>
+        <WalletMultiButton />
+        <WalletDisconnectButton />
       </div>
     </div>
   );
