@@ -11,12 +11,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(overview)/page.js"
     ],
-    "/(overview)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(overview)/layout.css",
-      "static/chunks/app/(overview)/layout.js"
-    ],
     "/(overview)/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
