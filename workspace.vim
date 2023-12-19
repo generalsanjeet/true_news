@@ -21,6 +21,15 @@ inoremap <silent> <expr> <Plug>(asyncomplete_force_refresh) asyncomplete#force_r
 imap Ü <Plug>(copilot-suggest)
 imap Û <Plug>(copilot-previous)
 imap Ý <Plug>(copilot-next)
+nmap \w\m <Plug>VimwikiMakeTomorrowDiaryNote
+nmap \w\y <Plug>VimwikiMakeYesterdayDiaryNote
+nmap \w\t <Plug>VimwikiTabMakeDiaryNote
+nmap \w\w <Plug>VimwikiMakeDiaryNote
+nmap \w\i <Plug>VimwikiDiaryGenerateLinks
+nmap \wi <Plug>VimwikiDiaryIndex
+nmap \ws <Plug>VimwikiUISelect
+nmap \wt <Plug>VimwikiTabIndex
+nmap \ww :VimwikiIndex
 xmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
@@ -92,7 +101,7 @@ set laststatus=0
 set mouse=a
 set pastetoggle=<F2>
 set path=.,/usr/include,,,**
-set runtimepath=~/.vim,~/.vim/pack/github/start/copilot.vim,~/.vim/plugged/asyncomplete.vim,~/.vim/plugged/asyncomplete-lsp.vim,~/.vim/plugged/rust.vim,~/.vim/plugged/vim-racer,~/.vim/plugged/vim-javascript,~/.vim/plugged/typescript-vim,~/.vim/plugged/vim-jsx-typescript,~/.vim/plugged/vim-styled-components,~/.vim/plugged/vim-graphql,~/.vim/plugged/coc.nvim,/usr/share/vim/vimfiles,/usr/share/vim/vim90,/usr/share/vim/vimfiles/after,~/.vim/plugged/rust.vim/after,~/.vim/plugged/vim-javascript/after,~/.vim/plugged/vim-jsx-typescript/after,~/.vim/plugged/vim-styled-components/after,~/.vim/plugged/vim-graphql/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/pack/github/start/copilot.vim,~/.vim/plugged/asyncomplete.vim,~/.vim/plugged/asyncomplete-lsp.vim,~/.vim/plugged/rust.vim,~/.vim/plugged/vim-racer,~/.vim/plugged/vim-javascript,~/.vim/plugged/typescript-vim,~/.vim/plugged/vim-jsx-typescript,~/.vim/plugged/vim-styled-components,~/.vim/plugged/vim-graphql,~/.vim/plugged/coc.nvim,~/.vim/plugged/vimwiki,/usr/share/vim/vimfiles,/usr/share/vim/vim90,/usr/share/vim/vimfiles/after,~/.vim/plugged/rust.vim/after,~/.vim/plugged/vim-javascript/after,~/.vim/plugged/vim-jsx-typescript/after,~/.vim/plugged/vim-styled-components/after,~/.vim/plugged/vim-graphql/after,~/.vim/after
 set shiftwidth=4
 set shortmess=filnxtToOSF
 set showmatch
@@ -125,40 +134,28 @@ else
 endif
 argglobal
 %argdel
-edit ~/2023/true_news
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 100 + 69) / 138)
+exe 'vert 2resize ' . ((&columns * 37 + 69) / 138)
 argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-imap <buffer> <MiddleMouse> <Plug>IMiddlemouse
-imap <buffer> <LeftMouse> <Plug>ILeftmouse
-nmap <buffer>  <Plug>NetrwHideEdit
-nmap <buffer> <nowait> <silent>  <Plug>NetrwRefresh
-nmap <buffer> <nowait> <silent>  <Plug>NetrwLocalBrowseCheck
-nmap <buffer> <nowait> <silent>  <Plug>NetrwServerEdit
-nmap <buffer> <nowait> <silent> % <Plug>NetrwOpenFile
-nmap <buffer> <nowait> <silent> - <Plug>NetrwBrowseUpDir
-nmap <buffer> <nowait> <silent> C <Plug>NetrwSetChgwin
-nmap <buffer> <nowait> <silent> a <Plug>NetrwHide_a
-nmap <buffer> <nowait> <silent> cd <Plug>NetrwLcd
-nmap <buffer> <nowait> <silent> cB <Plug>NetrwBadd_cB
-nmap <buffer> <nowait> <silent> cb <Plug>NetrwBadd_cb
-nmap <buffer> <nowait> <silent> gb <Plug>NetrwBookHistHandler_gb
-nnoremap <buffer> <F1> :he netrw-quickhelp
-nmap <buffer> <silent> <Plug>Netrw2Leftmouse -
-nmap <buffer> <2-LeftMouse> <Plug>Netrw2Leftmouse
-nmap <buffer> <S-LeftDrag> <Plug>NetrwSLeftdrag
-nmap <buffer> <S-LeftMouse> <Plug>NetrwSLeftmouse
-nmap <buffer> <MiddleMouse> <Plug>NetrwMiddlemouse
-nmap <buffer> <C-LeftMouse> <Plug>NetrwCLeftmouse
-nmap <buffer> <LeftMouse> <Plug>NetrwLeftmouse
-nmap <buffer> <nowait> <silent> <S-CR> <Plug>NetrwTreeSqueeze
-nnoremap <buffer> <silent> <S-Up> :Pexplore
-nnoremap <buffer> <silent> <S-Down> :Nexplore
-nmap <buffer> <C-H> <Plug>NetrwHideEdit
-nmap <buffer> <nowait> <silent> <C-R> <Plug>NetrwServerEdit
-nmap <buffer> <nowait> <silent> <C-L> <Plug>NetrwRefresh
-let &cpo=s:cpo_save
-unlet s:cpo_save
+terminal ++curwin ++cols=100 ++rows=41 
+let s:term_buf_3 = bufnr()
+balt \!/usr/bin/zsh
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -167,9 +164,9 @@ setlocal balloonexpr=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
-setlocal bufhidden=delete
-setlocal nobuflisted
-setlocal buftype=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=terminal
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
@@ -179,9 +176,9 @@ setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
 setlocal concealcursor=
 setlocal conceallevel=0
-setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
@@ -195,8 +192,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'netrw'
-setlocal filetype=netrw
+if &filetype != ''
+setlocal filetype=
 endif
 setlocal fillchars=
 setlocal fixendofline
@@ -211,8 +208,8 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatoptions=tcq
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
@@ -238,14 +235,14 @@ setlocal modeline
 setlocal nomodifiable
 setlocal nrformats=bin,octal,hex
 set number
-setlocal nonumber
+setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
-setlocal readonly
+setlocal noreadonly
 setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
@@ -268,8 +265,8 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'netrw'
-setlocal syntax=netrw
+if &syntax != ''
+setlocal syntax=
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -290,17 +287,160 @@ setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal nowinfixwidth
-setlocal nowrap
+setlocal wrap
 setlocal wrapmargin=0
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 20) / 40)
+let s:l = 1 - ((0 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
-lcd ~/2023/true_news
+wincmd w
+argglobal
+terminal ++curwin ++cols=100 ++rows=41 
+let s:term_buf_2 = bufnr()
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=terminal
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinscopedecls=public,protected,private
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != ''
+setlocal filetype=
+endif
+setlocal fillchars=
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatoptions=tcq
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+set linebreak
+setlocal linebreak
+setlocal nolisp
+setlocal lispoptions=
+setlocal lispwords=
+setlocal nolist
+setlocal listchars=
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal nomodifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal nosmoothscroll
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal spelloptions=
+setlocal statusline=
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != ''
+setlocal syntax=
+endif
+setlocal tabstop=4
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+set termwinsize=30*100
+setlocal termwinsize=30*100
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal thesaurusfunc=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal virtualedit=
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 1 - ((0 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 100 + 69) / 138)
+exe 'vert 2resize ' . ((&columns * 37 + 69) / 138)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
@@ -308,6 +448,8 @@ endif
 unlet! s:wipebuf
 set winheight=30 winwidth=100
 set shortmess=filnxtToOSF
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
