@@ -9,7 +9,7 @@ describe("true_news", () => {
   it("can publish a new news", async () => {
     const newsKeyPair = anchor.web3.Keypair.generate();
     await program.methods
-      .publishNews("sanjeet channel news", "my first news")
+      .publishNews("wion news", "Elon Musk tesla launched new car")
       .accounts({
         myNews: newsKeyPair.publicKey,
         publisherOfNews: program.provider.publicKey,

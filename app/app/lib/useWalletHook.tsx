@@ -13,7 +13,8 @@ import { Connection, PublicKey } from "@solana/web3.js";
 // very important. We need this because our program needs to know how did we design our Anchor program
 // which functions are there and how to use them
 //import idl from "../../target/idl/sol_twitter.json";
-import idl from "../../../target/idl/true_news.json";
+//import idl from "../../../target/idl/true_news.json";
+
 
 // Solana Explorer : https://explorer.solana.com
 
